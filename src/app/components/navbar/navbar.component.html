@@ -1,0 +1,130 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="" style="color: rgb(0, 0, 95); font-weight: 500; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">ASii Medical</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <button class="btn" style="color: rgb(0, 0, 95); outline: 1px solid rgb(0, 0, 95); outline: none;" type="button" (click)="open(tos)">
+              Terms of Service
+            </button>
+          </ul>
+
+          <div class="input-group mb-3 me-auto mb-lg-0" style="width: 60%;">
+            <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="Search" [ngbTypeahead]="search" (input)="onSearchInput()"
+                   aria-label="Search" style="box-shadow: none;" [(ngModel)]="query" (keyup.enter)="searchProducts()" (selectItem)="exactNameSearch($event.item)">
+            <div class="input-group-append">
+              <button class="btn search-btn" (click)="searchProducts()" type="button"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
+
+          <form *ngIf="!checkingOut" class="d-flex">
+              <button class="btn" style="color: rgb(0, 0, 95); outline: 1px solid rgb(0, 0, 95);" type="button" (click)="open(content)">
+                  <i class="bi-cart-fill me-1"></i>
+                  Cart
+                  <span class="badge text-white ms-1 rounded-pill" style="background-color: rgb(0, 0, 95)">{{cart.items.length}}</span>
+              </button>
+          </form>
+      </div>
+  </div>
+</nav>
+
+<ng-template #content let-modal>
+  <div class="modal-body modal-lg">
+    <div>
+      <h4>Cart
+        <button type="button" class="close float-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </h4>
+    </div>
+    <hr>
+    <app-cart [image]="true"></app-cart>
+    <div>
+      <span style="font-weight: 500; font-size: large;">Total: ${{cart.total | number}}</span>
+      <button type="button" [disabled]="!cart.items.length || cart.total < 300" style="background-color: rgb(0, 0, 95); color: white; width: fit-content; float: right;"
+        class="btn" [routerLink]="['checkout']" (click)="modal.close('Save click')">Checkout</button>
+      <br><span *ngIf="cart.total < 300" style="color: gray; font-size: small;">Orders must be $300 or more</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tos let-modal>
+  <div class="modal-body modal-lg">
+    <div>
+      <h4>Terms of Service
+        <button type="button" class="close float-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </h4>
+    </div>
+    <div>
+      <br><strong>The ASii Medical</strong><br>
+      We Guarantee the Best Price and will match any manufacturer's authorized pricing on
+      most of our items (*Some manufacturers are excluded). If you see a lower price give us
+      a call at 516-840-5040
+      <br><br><strong>MINIMUM ORDERS</strong><br>
+      <span style="font-weight: 500;">Domestic Shipping Orders</span> for domestic shipments (USA and Outlining Territories)
+      have a $300.00 minimum order Requirement. Any Orders Placed on this website under
+      $300 may be Subject to a <span style="font-weight: 500;">$25.00 Minimum Order Fee</span> in addition to freight charges
+      and/or a total <span style="font-weight: 500;">Cancellation of the order.</span><br><br>
+      <span style="font-weight: 500;">International Shipping:</span> Orders for international shipment have a $2,500.00 minimum
+      order requirement, will be assessed a $100.00 processing fee in addition to freight
+      charges and require a wire transfer of funds to process the order.
+      <br><br><strong>SHIPPING CHARGES</strong><br>
+      Please be advised that shipping charges vary based on package weight, dimensions,
+      total number of packages, perishability, urgency, and delivery location. Shipping fee
+      starts at $9.50 for most orders. You may request a specific carrier by noting that with our
+      customer service team when placing your order or add it to the comment section if
+      placing the order online. You may also request that we bill the shipping to your account
+      number.
+      <br><br><strong>DELIVERY TERMS</strong><br>
+      Please be advised that our shipping terms are FOB: Origin. We are not responsible for
+      shipments once they leave our dock. Your shipment may be insured for an additional
+      fee by calling our customer service.
+      <br><br><strong>EXPEDITED SHIPPING</strong>
+      Expedited shipping transit times are calculated from the time the product is shipped
+      from our facility. Not all items available on our web site are stocked in our facility and
+      may take from 1 to 3 weeks to arrive at our facility for shipping. If your order has a
+      critical shipping requirement please contact us for specific availability.
+      <br><br><strong>DROP SHIPPED ITEMS</strong><br>
+      Items that are drop shipped from the Manufacturer may be subject to a qualification
+      period and shipping times may vary. Some manufacturers do not allow expedited
+      shipping request. <span style="font-weight: 500;">All orders may be subject to additional Fees and Taxes required
+      by state laws and manufacturers.</span>
+      <br><br><strong>SALES TAX</strong><br>
+      Taxes may be collected from our customers in North Carolina, in addition drop ship
+      items from certain states may have to be collected outside of the original order. This
+      does not relieve customers from other states of their obligation to pay taxes that may be
+      required. Taxes on orders are subject to change at any time due to federal and
+      individual states changing their regulations.
+      <br><br><strong>RETURNS & CANCELLATIONS</strong><br>
+      <br><span style="font-weight: 500;">**Due to FDA Guidelines and Supply Chain Demands All Coronaviruses COVID-19
+      Related Orders and/or Products are NON-Cancellable and NON-Returnable.**</span><br><br>
+      Items eligible for return are subject to a 25% restocking fee and must be accompanied
+      by a Return Authorization that is made available by contacting ASii Medical
+      516-840-5040. Customer is responsible for return freight. <span style="font-weight: 500;">Returned items must be
+      returned within 30 days</span> of shipment and within 14 days of receipt of the Return
+      Authorization. Product and product packaging <span style="font-weight: 500;">must be in resaleable condition.</span>
+
+      <br><br><span style="font-weight: 500;">
+      Labels
+      on exterior packaging would be considered not in resalable condition.
+      Refrigerated Items, Pharmaceuticals, Injectables, Reagent Test Cassettes, and
+      most Non-Stock Items are not eligible for return.
+      </span>
+      <br><br>Defective or Items shipped in error will be the responsibility of ASii Medical or the
+      original manufacturer. Shipping errors must be brought to our attention within 7
+      days of receipt.
+      <br><br><strong>PRODUCT DISCLAIMER</strong><br>
+      <span style="font-weight: 500;"><span style="color: red">PLEASE NOTE:</span> Images, Descriptions, and Titles may not accurately represent
+      the product. You are encouraged to confirm that the manufacturer item code
+      above matches the products you are seeking. All patients or home users should
+      have a valid prescription for any medical supplies or devices that require one.
+      Some of our products have special shipping requirements due to weight and
+      refrigeration; please visit our Shipping Page for Details. All products on this
+      website are subject to current manufacturer pricing changes and availability. If
+      you are uncertain or have questions, Please E-mail or Call us at 516-840-5040 for
+      additional information.</span>
+    </div>
+  </div>
+</ng-template>

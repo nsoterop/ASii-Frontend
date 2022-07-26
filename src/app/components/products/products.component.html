@@ -1,0 +1,103 @@
+
+<div *ngIf="!productsLoaded"  class="d-flex justify-content-center mt-5">
+  <div class="spinner-border text-secondary" style="width: 6rem; height: 6rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<div *ngIf="productsLoaded">
+  <div class="d-flex" style="height: 100%;">
+    <div class="container px-4 mt-5" style="max-width: 20%; position: sticky; top: 0;">
+      <div class="pb-5">
+        <h4 style="color: rgb(0, 0, 95);">Categories</h4>
+        <hr>
+        <div>
+          <div *ngFor="let category of categories">
+            <button (click)="category.SubCategories.length ? expandFirstLevelCategories(category) : filterByCategory(category)" style="text-align: left; background-color: transparent; border: none; font-size: small;">
+            <span [ngClass]="{ 'categoryOpen' : category.open }">{{category.CategoryPathName}}</span>
+            </button>
+            <div *ngIf="category.open">
+              <div class="px-3" *ngFor="let sub_category_1 of category.SubCategories">
+                <button (click)="sub_category_1.SubCategories.length ? expandSecondLevelCategories(sub_category_1) : filterByCategory(sub_category_1)" style="text-align: left; background-color: transparent; border: none; font-size: small;">
+                  <span [ngClass]="{ 'categoryOpen' : sub_category_1.open }">{{sub_category_1.CategoryPathName}}</span>
+                </button>
+                <div *ngIf="sub_category_1.open">
+                  <div class="px-3" *ngFor="let sub_category_2 of sub_category_1.SubCategories">
+                    <button (click)="filterByCategory(sub_category_2)" style="text-align: left; background-color: transparent; border: none; font-size: small;">
+                      {{sub_category_2.CategoryPathName}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container px-4 mt-5">
+      <div class="row gx-sm-3 gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col mb-5" *ngFor="let product of products">
+          <div class="card h-100">
+            <!-- Product image-->
+            <img (click)="viewProduct(product)" class="card-img-top" style="max-height: 200px; min-height: 200px; cursor: pointer;" src="{{product.ItemImageURL ? product.ItemImageURL : 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png'}}" alt="..." />
+            <!-- Product details-->
+            <div class="card-body py-3 px-2">
+              <div class="text-center" style="cursor: pointer;" (click)="viewProduct(product)">
+                <!-- Product name-->
+                <p class="fw-bolder item-name">{{product.ProductName}}</p>
+                <div class="item-description" [title]="product.ItemDescription">{{product.ItemDescription}}</div><br><br>
+                <!-- Product price-->
+                <div class="item-price">${{product.SalePrice | number}}</div>
+              </div>
+            </div>
+
+            <!--Product actions-->
+            <!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center px-3 pt-3">
+                <button (click)="addToCart(product)" class="btn mt-auto add-to-cart" style="outline: 1px solid rgb(0, 0, 95);">Add to cart</button>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4 d-flex justify-content-center mb-4">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination mb-0">
+
+        <li class="page-item">
+          <button class="page-link" [disabled]="page===1" style="background-color: transparent; border: none; color: black" (click)="updatePage(page-1)" aria-label="Previous">
+            <span aria-hidden="true"><</span>
+          </button>
+        </li>
+
+        <ng-container *ngIf="page > 1">
+          <button class="page-link page-number" [ngClass]="{'button-active': page === 1}" (click)="updatePage(page-1)">{{page-1}}</button>
+        </ng-container>
+        <ng-container>
+            <button class="page-link page-number" [ngClass]="{'button-active': page > 1}" (click)="updatePage(page)">{{page}}</button>
+        </ng-container>
+        <ng-container *ngIf="!(products.length < itemsPerPage)">
+            <button class="page-link page-number" (click)="updatePage(page+1)">{{page+1}}</button>
+        </ng-container>
+
+        <li class="page-item">
+          <button class="page-link" (click)="updatePage(page+1)" [disabled]="products.length < itemsPerPage" style="background-color: transparent; border: none; color: black" aria-label="Next">
+            <span aria-hidden="true">></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="dropdown d-flex">
+      <button class="dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent; border: none;">
+        Items per page: {{itemsPerPage}}
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li *ngFor="let count of itemsPerPageOptions" (click)="updateItemsPerPage(count)"><a class="dropdown-item">{{count}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
