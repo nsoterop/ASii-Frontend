@@ -1908,7 +1908,7 @@ class CheckoutComponent {
                             postalCode: shippingInfo.zip
                         }
                     });
-                    const paymentResponse = yield fetch('/api/products/createPayment', {
+                    const paymentResponse = yield fetch('http://localhost:3002/api/products/createPayment', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1989,7 +1989,7 @@ class CheckoutComponent {
                         costDetails
                     });
                     try {
-                        const orderResponse = yield fetch('/api/products/order', {
+                        const orderResponse = yield fetch('http://localhost:3002/api/products/order', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -2517,7 +2517,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    baseApi: '/api',
+    baseApi: 'http://localhost:3002/api',
     squareAppID: 'sq0idp-ofxIOu99bEbYg2hNFjg6UA',
     squareLocationID: '4MM15PDYYA3HY',
     shipping: 0

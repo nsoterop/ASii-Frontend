@@ -3981,7 +3981,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 });
                                 _context8.prev = 1;
                                 _context8.next = 4;
-                                return fetch('/api/products/order', {
+                                return fetch('http://localhost:3002/api/products/order', {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json'
@@ -4125,7 +4125,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                   }
                                 });
                                 _context4.next = 3;
-                                return fetch('/api/products/createPayment', {
+                                return fetch('http://localhost:3002/api/products/createPayment', {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json'
@@ -5368,7 +5368,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var environment = {
       production: false,
-      baseApi: '/api',
+      baseApi: 'http://localhost:3002/api',
       squareAppID: 'sq0idp-ofxIOu99bEbYg2hNFjg6UA',
       squareLocationID: '4MM15PDYYA3HY',
       shipping: 0

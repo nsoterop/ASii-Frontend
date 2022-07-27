@@ -206,7 +206,7 @@ export class CheckoutComponent implements OnInit {
         }
       });
 
-      const paymentResponse = await fetch('/api/products/createPayment', {
+      const paymentResponse = await fetch('http://localhost:3002/api/products/createPayment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -288,7 +288,7 @@ export class CheckoutComponent implements OnInit {
       })
 
       try {
-        const orderResponse = await fetch('/api/products/order', {
+        const orderResponse = await fetch('http://localhost:3002/api/products/order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
