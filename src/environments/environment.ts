@@ -7,6 +7,7 @@ export const environment = {
   baseApi: '/api',
   squareAppID: 'sq0idp-ofxIOu99bEbYg2hNFjg6UA',
   squareLocationID: '4MM15PDYYA3HY',
+  serviceFee: 3.5,
   shipping: 0
 };
 

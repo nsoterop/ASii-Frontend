@@ -70,28 +70,30 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  public orderId;
-  public orderTotal;
-  public loaded = false;
-  public salesTax = 0;
+  public orderId
+  public orderTotal
+  public loaded = false
+  public salesTax = 0
   public stage = 'shipping'
   public orderSuccess;
+  public serviceFee = 0
 
   async ngOnInit() {
     this.cart = await this.cartService.getCart()
     this.orderTotal = this.cart.total + this.salesTax
-    this.loaded = true;
+    this.serviceFee = environment.serviceFee
+    this.loaded = true
   }
 
-  validFirstName = true;
-  validLastName = true;
-  validEmail = true;
-  validAddress = true;
-  validCity = true;
-  validCountry = true;
-  validState = true;
-  validZip = true;
-  validPhone = true;
+  validFirstName = true
+  validLastName = true
+  validEmail = true
+  validAddress = true
+  validCity = true
+  validCountry = true
+  validState = true
+  validZip = true
+  validPhone = true
   validShippingAccountNumber = true;
   public checkForm() {
     let checkoutForm = document.getElementById("checkoutForm")
@@ -130,6 +132,7 @@ export class CheckoutComponent implements OnInit {
     this.salesTaxPercent = state.tax
     this.salesTax = this.cart.total * tax
     this.orderTotal = this.cart.total + this.salesTax
+    this.orderTotal += this.orderTotal * (this.serviceFee / 100)
   }
 
   public continueToPayment() {
@@ -172,7 +175,8 @@ export class CheckoutComponent implements OnInit {
     const locationId = environment.squareLocationID;
     const costDetails = {
       cartTotal: this.cart.total,
-      salesTax: this.salesTaxPercent
+      salesTax: this.salesTaxPercent,
+      serviceFee: this.orderTotal * (this.serviceFee / 100)
     }
 
     async function initializeCard(payments) {

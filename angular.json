@@ -63,7 +63,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "med-store:build"
+            "browserTarget": "med-store:build",
+            "ssl": true,
+            "sslKey": "host.key",
+            "sslCert": "host.cert"
           },
           "configurations": {
             "production": {
