@@ -24,7 +24,7 @@ export class ProductsApisService {
   }
 
   public searchProductsByCategory(page, itemsPerPage, categoryId) {
-    return this.http.get(`${this.productsApiURL}/filterCategory/${page}/${itemsPerPage}/${categoryId}`)
+    return this.http.post(`${this.productsApiURL}/filterCategory/${page}/${itemsPerPage}`, {category: categoryId})
   }
 
   public getCategories() {

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart-service/cart.service';
 import { ProductsApisService } from 'src/app/services/api-services/products-apis.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -66,22 +67,26 @@ export class CheckoutComponent implements OnInit {
 
   ]
 
-  constructor(private cartService: CartService, private fb: FormBuilder, private productsApis: ProductsApisService) {
+  constructor(private cartService: CartService, private fb: FormBuilder, private productsApis: ProductsApisService, private router: Router) {
 
   }
 
   public orderId
   public orderTotal
   public loaded = false
-  public salesTax = 0
+  public salesTax
   public stage = 'shipping'
-  public orderSuccess;
+  public orderSuccess
   public serviceFee = 0
+  public orderInfo
 
   async ngOnInit() {
     this.cart = await this.cartService.getCart()
     this.orderTotal = this.cart.total + this.salesTax
     this.serviceFee = environment.serviceFee
+    if((localStorage.getItem('ASii_Medical_Cart') && !localStorage.getItem('ASii_Medical_Cart').length) || !localStorage.getItem('ASii_Medical_Cart')) {
+      this.router.navigate(["/"])
+    }
     this.loaded = true
   }
 
@@ -126,16 +131,15 @@ export class CheckoutComponent implements OnInit {
   public checkoutData
   public updateSalesTax(selectedState) {
     let tax = 0
-    let state = this.states.find(state => state.state === selectedState
-    )
+    let state = this.states.find(state => state.state === selectedState)
     tax = state.tax / 100
     this.salesTaxPercent = state.tax
-    this.salesTax = this.cart.total * tax
-    this.orderTotal = this.cart.total + this.salesTax
-    this.orderTotal += this.orderTotal * (this.serviceFee / 100)
+    this.salesTax = Number((this.cart.total * tax).toFixed(2))
+    this.orderTotal = Number((this.cart.total + this.salesTax).toFixed(2))
+    this.orderTotal += Number((this.orderTotal * (this.serviceFee / 100)).toFixed(2))
   }
 
-  public continueToPayment() {
+  public async continueToPayment() {
     let form = document.getElementById("checkoutForm")
     if (
       form["firstName"].value === "" ||
@@ -165,8 +169,50 @@ export class CheckoutComponent implements OnInit {
         phone: form["phone"].value,
       }
 
-      this.stage = 'payment'
-      this.initializePayment()
+      //this.initializePayment()
+
+      let costDetails = {
+        cartTotal: this.cart.total,
+        salesTax: this.salesTaxPercent,
+        serviceFee: this.orderTotal * (this.serviceFee / 100),
+        orderTotal: this.orderTotal
+      }
+      let body = JSON.stringify({
+        costDetails,
+        cart: this.cart.items,
+        firstname: this.checkoutData.firstName,
+        lastname: this.checkoutData.lastName,
+        companyName: this.checkoutData.companyName,
+        shippingAccountNumber: this.checkoutData.shippingAccountNumber,
+        buyerEmailAddress: this.checkoutData.email,
+        phone: this.checkoutData.phone,
+        shippingAddress: {
+          addressLine1: this.checkoutData.address,
+          locality: this.checkoutData.city,
+          administrativeDistrictLevel1: this.checkoutData.state,
+          country: this.checkoutData.country,
+          postalCode: this.checkoutData.zip
+        }
+      });
+
+      this.orderInfo = JSON.parse(body);
+
+      const paymentResponse = await fetch('/api/products/createPayment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      });
+
+      if (paymentResponse.ok) {
+        this.stage = 'submitted'
+        localStorage.clear()
+        console.log(this.orderInfo)
+      } else {
+        const errorBody = await paymentResponse.text();
+        throw new Error(errorBody);
+      }
     }
   }
 

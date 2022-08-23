@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
   public filterByCategory(category) {
     this.productsLoaded = false
     this.selectedCategory = category;
-    let categoryId = encodeURIComponent(category.CategoryPathID)
+    let categoryId = category.CategoryPathID
     this.page = 1
     this.productsService.updateCategory(categoryId)
   }

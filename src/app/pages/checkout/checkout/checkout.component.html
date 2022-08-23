@@ -11,7 +11,7 @@
   <hr>
   <div class="container">
     <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
+        <div *ngIf="stage === 'shipping' || stage === 'payment'" class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Your cart</span>
                 <span class="badge badge-secondary badge-pill">{{cart.items.length}}</span>
@@ -29,19 +29,19 @@
                   <span class="text-muted">${{cart.total | number : '1.2-2'}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                    <span class="text-muted">Sales Tax</span>
-                    <span *ngIf="salesTax === 0" class="text-muted"> ~ </span>
-                    <span *ngIf="salesTax !== 0" class="text-muted">${{salesTax | number : '1.2-2'}}</span>
+                    <span class="text-muted">Sales Tax <span *ngIf="salesTaxPercent">&nbsp;({{salesTaxPercent}}%)</span></span>
+                    <span *ngIf="salesTax === undefined" class="text-muted"> ~ </span>
+                    <span *ngIf="salesTax !== undefined" class="text-muted">${{salesTax | number : '1.2-2'}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                  <span class="text-muted">Service Fee</span>
-                  <span *ngIf="salesTax === 0" class="text-muted"> ~ </span>
-                  <span *ngIf="salesTax !== 0" class="text-muted">${{(cart.total + salesTax) * (serviceFee/100) | number : '1.2-2'}}</span>
+                  <span class="text-muted">Service Fee &nbsp;(3.5%)</span>
+                  <span *ngIf="salesTax === undefined" class="text-muted"> ~ </span>
+                  <span *ngIf="salesTax !== undefined" class="text-muted">${{(cart.total + salesTax) * (serviceFee/100) | number : '1.2-2'}}</span>
               </li>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total</span>
-                    <span *ngIf="orderTotal === 0" class="text-muted"> ~ </span>
-                    <span *ngIf="orderTotal !== 0" class="text-muted">${{orderTotal | number : '1.2-2'}}</span>
+                    <span *ngIf="salesTax === undefined" class="text-muted"> ~ </span>
+                    <span *ngIf="salesTax !== undefined" class="text-muted">${{orderTotal | number : '1.2-2'}}</span>
                 </li>
 
             </ul>
@@ -125,12 +125,50 @@
                 </div>
                 <hr class="mb-4">
             </form>
-            <button style="background-color:rgb(0, 0, 95);" (click)="continueToPayment()">Continue to Payment</button>
+            <button style="background-color:rgb(0, 0, 95);" (click)="continueToPayment()">Submit Order</button>
         </div>
-        <div *ngIf="stage === 'payment'" class="col-md-8 order-md-1">
+        <!-- <div *ngIf="stage === 'payment'" class="col-md-8 order-md-1">
           <h4 class="mb-3">Payment</h4>
           <div id="card-container"></div>
           <button id="card-button" type="button" style="background-color:rgb(0, 0, 95);">Submit Order</button>
+        </div> -->
+        <div *ngIf="stage === 'submitted'">
+          <br><br><h2>Order Submitted</h2>
+          Thank you for your order. To complete the payment we will call you for your credit card information. With any questions or concerns please email us
+          at asiimedical@outlook.com or call 919-285-4426.
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <br><br><h2>Contact Information</h2>
+              <span style="font-weight: 500">Name: </span> {{orderInfo.firstname}} {{orderInfo.lastname}}
+              <br><span style="font-weight: 500">Email: </span>{{orderInfo.buyerEmailAddress}}
+              <br><span style="font-weight: 500">Phone: </span>{{orderInfo.phone}}
+            </div>
+            <div class="col-md-6 mb-3">
+              <br><br><h2>Shipping Information</h2>
+              <span *ngIf="orderInfo.companyName">{{orderInfo.companyName}}<br></span>
+              {{orderInfo.shippingAddress.addressLine1}}<br>
+              {{orderInfo.shippingAddress.locality}} {{orderInfo.shippingAddress.administrativeDistrictLevel1}} {{orderInfo.shippingAddress.postalCode}}<br>
+              United States
+              <br><span style="font-weight: 500">Shipping Account Number: </span>{{orderInfo.shippingAccountNumber}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <br><br><h2>Items Ordered:</h2>
+              <span *ngFor="let item of orderInfo.cart">
+                {{item.ProductName}} (Quantity: {{item.quantity}})
+              </span>
+            </div>
+            <div class="col-md-6 mb-3">
+              <br><br><h2>Payment Details</h2>
+              <span style="font-weight: 500">Cart Total: </span>${{orderInfo.costDetails.cartTotal.toFixed(2)}}
+              <br><span style="font-weight: 500">Sales Tax: </span>%{{orderInfo.costDetails.salesTax}}
+              <br><span style="font-weight: 500">Service Fee: </span>${{orderInfo.costDetails.serviceFee.toFixed(2)}}
+              <br><span style="font-weight: 500">Order Total: </span>${{orderInfo.costDetails.orderTotal.toFixed(2)}}
+            </div>
+          </div>
+
         </div>
     </div>
   </div>

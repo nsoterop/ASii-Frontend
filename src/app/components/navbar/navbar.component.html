@@ -41,7 +41,7 @@
     <app-cart [image]="true"></app-cart>
     <div>
       <span style="font-weight: 500; font-size: large;">Total: ${{cart.total | number}}</span>
-      <button type="button" [disabled]="!cart.items.length" style="background-color: rgb(0, 0, 95); color: white; width: fit-content; float: right;"
+      <button type="button" [disabled]="!cart.items.length || cart.total < 300" style="background-color: rgb(0, 0, 95); color: white; width: fit-content; float: right;"
         class="btn" [routerLink]="['checkout']" (click)="modal.close('Save click')">Checkout</button>
       <br><span *ngIf="cart.total < 300" style="color: gray; font-size: small;">Orders must be $300 or more</span>
     </div>
