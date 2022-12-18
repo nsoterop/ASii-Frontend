@@ -894,7 +894,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "p", 2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Email: asiimedical@outlook.com");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Email: info@asiimedical.com");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -3709,7 +3709,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, " Thank you for your order. To complete the payment we will call you for your credit card information. With any questions or concerns please email us at asiimedical@outlook.com or call 919-285-4426. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, " Thank you for your order. To complete the payment we will call you for your credit card information. With any questions or concerns please email us at info@asiimedical.com or call 919-285-4426. ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "div", 8);
 
@@ -4831,7 +4831,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "p", 4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Purchase Orders can be emailed to ordersatasii@outlook.com");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Purchase Orders can be emailed to orders@asiimedical.com");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -5872,7 +5872,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Users\icete\Desktop\ASii Medical - Copy\ASii-Frontend\src\main.ts */
+    /*! C:\Users\icete\Desktop\TEMP\ASii-Frontend\src\main.ts */
     "./src/main.ts");
     /***/
   }
