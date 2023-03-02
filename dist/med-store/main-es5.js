@@ -1425,43 +1425,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "br");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](9, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "b");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "b");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "ASii Medical Solutions LLC");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "ASii Medical Solutions LLC");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, " was founded in 2019 (Raleigh, North Carolina) with the aim of challenging the consumable/distribution market status quo. Company employees have more than 20 years of experience making the decision to strategically partner with trusted industry leaders and newer manufacturers to provide commonly used items in the supply chain with some on an exclusive basis. This strategy has allowed ASii Medical to show customer savings when possible but ultimately meet customer expectations to become a trusted resource. ASii Medical now has the references and credibility to offer more than 200,000 commonly used supplies and equipment.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, " was founded in 2019 (Raleigh, North Carolina) with the aim of challenging the consumable/distribution market status quo. Company employees have more than 20 years of experience making the decision to strategically partner with trusted industry leaders and newer manufacturers. Making it provide commonly used items in the supply chain with some on an exclusive basis. This strategy has allowed ASii Medical to show customer savings when possible but ultimately meet customer expectations to become a trusted resource. ASii Medical now has the references and credibility to offer more than 200,000 commonly used supplies and equipment.");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "br");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "br");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](14, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "b");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "b");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Fulfillment");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Fulfillment");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, " The company understands the importance of swift and reliable fulfillment and ensures all markets are well served with our partnered fulfillment centers and local contacts.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, " The company understands the importance of swift and reliable fulfillment and ensures all markets are well served with our partnered fulfillment centers and local contacts.");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](17, "br");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](18, "br");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](19, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "b");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "b");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "Programs");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Programs");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, " The company also understands the value of partnerships through its programs by ensuring items normally ordered by customers are stocked and readily available once a relationship has been established. GPO and Local Vendor Contracts Available.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " The company also understands the value of partnerships through its programs by ensuring items normally ordered by customers are stocked and readily available once a relationship has been established. GPO and Local Vendor Contracts Available.");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "br");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](23, "br");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](24, "br");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -1683,7 +1681,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](21, NavbarComponent_ng_template_21_Template, 94, 0, "ng-template", null, 16, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, NavbarComponent_ng_template_23_Template, 25, 0, "ng-template", null, 17, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, NavbarComponent_ng_template_23_Template, 24, 0, "ng-template", null, 17, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
         }
 
         if (rf & 2) {
