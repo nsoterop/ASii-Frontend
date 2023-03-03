@@ -1431,7 +1431,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, " was founded in 2019 (Raleigh, North Carolina) with the aim of challenging the consumable/distribution market status quo. Company employees have more than 20 years of experience making the decision to strategically partner with trusted industry leaders and newer manufacturers. Making it provide commonly used items in the supply chain with some on an exclusive basis. This strategy has allowed ASii Medical to show customer savings when possible but ultimately meet customer expectations to become a trusted resource. ASii Medical now has the references and credibility to offer more than 200,000 commonly used supplies and equipment.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, " was founded in 2019 (Raleigh, North Carolina) with the aim of challenging the consumable/distribution market status quo. Company employees have more than 20 years of experience making the decision to strategically partner with trusted industry leaders and newer manufacturers to provide commonly used items in the supply chain, with some on an exclusive basis. This strategy has allowed ASii Medical to show customer savings when possible but ultimately meet customer expectations to become a trusted resource. ASii Medical now has the references and credibility to offer more than 200,000 commonly used supplies and equipment.");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "br");
 
