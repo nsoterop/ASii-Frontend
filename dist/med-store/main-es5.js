@@ -884,7 +884,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "p", 2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Phone: 919-285-4426");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Phone: 919-444-2339");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
