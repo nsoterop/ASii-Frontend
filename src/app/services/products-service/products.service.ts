@@ -11,14 +11,36 @@ export class ProductsService {
   public products = new Observable<any>()
   private productsSubject = new Subject<Object>()
 
+  public categoryRefresh = new Observable<any>()
+  private categoryRefreshSubject = new Subject<Object>()
+
   public page = 1
   public itemsPerPage = 20
   public category = ''
   public query = ''
+  public productQuantityType = 'Large';
 
   constructor(private productsApis: ProductsApisService, private router: Router) {
     this.productsSubject = new Subject();
     this.products = this.productsSubject.asObservable();
+    this.categoryRefreshSubject = new Subject();
+    this.categoryRefresh = this.categoryRefreshSubject.asObservable();
+  }
+
+  public setProductApiURL(quantityType) {
+    this.productQuantityType = quantityType;
+    if (quantityType === 'Large') {
+      this.productsApis.setProductApiURL('products');
+    } else if (quantityType === 'Small') {
+      this.productsApis.setProductApiURL('smallQuantityProducts');
+    }
+    this.page = 1;
+    this.itemsPerPage = 20;
+    this.getProducts();
+    this.categoryRefreshSubject.next(true);
+  }
+  public getProductQuantityType() {
+    return this.productQuantityType;
   }
 
   public updateProducts() {

@@ -11,6 +11,10 @@ export class ProductsApisService {
 
   constructor(private http: HttpClient) { }
 
+  public setProductApiURL(quantityType) {
+    this.productsApiURL = `${environment.baseApi}/${quantityType}`
+  }
+
   public getProducts(page, itemsPerPage) {
     return this.http.get(`${this.productsApiURL}/all/${page}/${itemsPerPage}`)
   }

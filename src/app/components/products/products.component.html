@@ -6,7 +6,7 @@
 </div>
 <div *ngIf="productsLoaded">
   <div class="d-flex" style="height: 100%;">
-    <div class="container px-4 mt-5" style="max-width: 20%; position: sticky; top: 0;">
+    <div *ngIf="productQuantityType === 'Large'" class="container px-4 mt-5" style="max-width: 20%; position: sticky; top: 0;">
       <div class="pb-5">
         <h4 style="color: rgb(0, 0, 95);">Categories</h4>
         <hr>
@@ -17,7 +17,7 @@
             </button>
             <div *ngIf="category.open">
               <div class="px-3" *ngFor="let sub_category_1 of category.SubCategories">
-                <button (click)="sub_category_1.SubCategories.length ? expandSecondLevelCategories(sub_category_1) : filterByCategory(sub_category_1)" style="text-align: left; background-color: transparent; border: none; font-size: small;">
+                <button (click)="(sub_category_1.SubCategories && sub_category_1.SubCategories.length) ? expandSecondLevelCategories(sub_category_1) : filterByCategory(sub_category_1)" style="text-align: left; background-color: transparent; border: none; font-size: small;">
                   <span [ngClass]="{ 'categoryOpen' : sub_category_1.open }">{{sub_category_1.CategoryPathName}}</span>
                 </button>
                 <div *ngIf="sub_category_1.open">
@@ -45,7 +45,8 @@
               <div class="text-center" style="cursor: pointer;" (click)="viewProduct(product)">
                 <!-- Product name-->
                 <p class="fw-bolder item-name">{{product.ProductName}}</p>
-                <div class="item-description" [title]="product.ItemDescription">{{product.ItemDescription}}</div><br><br>
+                <div *ngIf="productQuantityType==='Large'" class="item-description" [title]="product.ItemDescription">{{product.ItemDescription}}</div>
+                <div *ngIf="productQuantityType==='Small'" class="item-description" [title]="product.ItemName">{{product.ItemName}}</div><br><br>
                 <!-- Product price-->
                 <div class="item-price">${{product.SalePrice | number}}</div>
               </div>

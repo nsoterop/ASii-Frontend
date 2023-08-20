@@ -3,19 +3,32 @@
       <a class="navbar-brand" href="" style="color: rgb(0, 0, 95); font-weight: 500; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">ASii Medical</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
-            <button class="btn" style="color: rgb(0, 0, 95); border: none; outline: none; " type="button" (click)="open(tos)">
-              Terms of Service
+
+        <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
+          <div class="dropdown">
+            <button class="btn" type="button" style="color:rgb(0, 0, 95); border: none; outline: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              {{productQuantityType}} Quantity Items
             </button>
+            <ul class="dropdown-menu" style="cursor: pointer;" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" (click)="changeProductQuantityType('Large')">Large Quantity Items</a></li>
+              <li><a class="dropdown-item" (click)="changeProductQuantityType('Small')">Small Quantity Items</a></li>
+            </ul>
+          </div>
+        </ul>
+
+          <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4 pr-4">
+            <div class="dropdown">
+              <button class="btn" type="button" style="color:rgb(0, 0, 95); border: none; outline: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Info
+              </button>
+              <ul class="dropdown-menu" style="cursor: pointer;" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" (click)="open(tos)">Terms of Service</a></li>
+                <li><a class="dropdown-item" (click)="open(about)">About Us</a></li>
+              </ul>
+            </div>
           </ul>
 
-          <ul class="navbar-nav me-auto">
-            <button class="btn" style="color:rgb(0, 0, 95); border: none; outline: none;" type="button" (click)="open(about)">
-              About
-            </button>
-          </ul>
-
-          <div class="input-group mb-3 me-auto mb-lg-0" style="width: 60%;">
+          <div class="input-group mb-3 me-auto mb-lg-0 pr-5" style="width: 60%;">
             <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="Search" [ngbTypeahead]="search" (input)="onSearchInput()"
                    aria-label="Search" style="box-shadow: none;" [(ngModel)]="query" (keyup.enter)="searchProducts()" (selectItem)="exactNameSearch($event.item)">
             <div class="input-group-append">

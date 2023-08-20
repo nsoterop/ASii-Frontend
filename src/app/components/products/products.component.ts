@@ -24,11 +24,25 @@ export class ProductsComponent implements OnInit {
   public categorySelected = false;
   public selectedCategory;
   public productsLoaded = false;
+  public productQuantityType = 'Large';
 
   constructor(private productsApi: ProductsApisService, private router: Router, private productsService: ProductsService,
     private cartService: CartService) { }
 
   async ngOnInit() {
+    this.productsService.categoryRefresh.subscribe(res => {
+      if(res && this.productQuantityType === 'Large') {
+        this.productsApi.getCategories().subscribe(res => {
+          this.setCategories(res)
+        })
+
+        this.productQuantityType = 'Small';
+      } else {
+        this.productQuantityType = 'Large';
+      }
+    })
+
+    this.productQuantityType = this.productsService.getProductQuantityType();
     await this.productsService.products.subscribe((products) => {
       this.products = products
       this.page = this.productsService.getPage()
@@ -39,6 +53,9 @@ export class ProductsComponent implements OnInit {
     await this.productsApi.getCategories().subscribe(res => {
       this.setCategories(res)
     })
+  }
+  public getProductQuantityType() {
+    return this.productsService.getProductQuantityType();
   }
 
   public setCategories(res) {
@@ -80,10 +97,14 @@ export class ProductsComponent implements OnInit {
 
   public filterByCategory(category) {
     this.productsLoaded = false
-    this.selectedCategory = category;
-    let categoryId = category.CategoryPathID
-    this.page = 1
-    this.productsService.updateCategory(categoryId)
+    if(this.productQuantityType === 'Large') {
+      this.selectedCategory = category;
+      let categoryId = category.CategoryPathID
+      this.page = 1
+      this.productsService.updateCategory(categoryId)
+    } else {
+      console.log(category)
+    }
   }
 
   public searchProducts() {

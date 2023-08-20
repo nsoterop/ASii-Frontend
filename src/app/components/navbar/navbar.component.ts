@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   public totalCartPrice = 0;
   public autoCompleteOptions: any = [];
   public checkingOut = false;
+  public productQuantityType = "Large";
 
   constructor(private productsService: ProductsService, private cartService: CartService, private modalService: NgbModal,
     private router: Router, private productsApis: ProductsApisService) {
@@ -31,10 +32,16 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productQuantityType = this.productsService.getProductQuantityType();
     this.cart = this.cartService.getCart()
     this.cartService.cart.subscribe((cart) => {
       this.cart = cart
     })
+  }
+
+  public changeProductQuantityType(quantity){
+    this.productQuantityType = quantity;
+    this.productsService.setProductApiURL(quantity);
   }
 
   public searchProducts() {
