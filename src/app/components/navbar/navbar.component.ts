@@ -39,6 +39,10 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  public makePayment() {
+    window.open('https://pay-accept.americanexpress.com/asiimedical', '_blank')
+  }
+
   public changeProductQuantityType(quantity){
     this.productQuantityType = quantity;
     this.productsService.setProductApiURL(quantity);

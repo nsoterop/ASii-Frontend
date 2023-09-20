@@ -52,6 +52,6 @@ export class ProductsApisService {
   }
 
   public sendPayment(token) {
-    return this.http.post(`${this.productsApiURL}/createPayment`, token)
+    return this.http.post(`${environment.baseApi}/products/createPayment`, token)
   }
 }

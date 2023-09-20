@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { ProductsApisService } from '../api-services/products-apis.service';
+import { CartService } from '../cart-service/cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ProductsService {
   public query = ''
   public productQuantityType = localStorage.getItem("productQuantityLabel") ? localStorage.getItem("productQuantityLabel") : 'Large';
 
-  constructor(private productsApis: ProductsApisService, private router: Router) {
+  constructor(private productsApis: ProductsApisService, private router: Router, private cartService: CartService) {
     this.productsSubject = new Subject();
     this.products = this.productsSubject.asObservable();
     this.categoryRefreshSubject = new Subject();
@@ -28,6 +29,7 @@ export class ProductsService {
   }
 
   public setProductApiURL(quantityType) {
+    this.cartService.clearCart();
     this.productQuantityType = quantityType;
     localStorage.setItem("productQuantityLabel", quantityType)
     if (quantityType === 'Large') {
@@ -41,7 +43,6 @@ export class ProductsService {
     this.itemsPerPage = 20;
     this.getProducts();
     this.categoryRefreshSubject.next(true);
-    console.log("HERE")
     this.router.navigate(['/'])
   }
   public getProductQuantityType() {
