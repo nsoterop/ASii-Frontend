@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductsApisService {
 
-  private productsApiURL = `${environment.baseApi}/products`;
+  private productsApiURL = `${environment.baseApi}/${localStorage.getItem("productQuantityType") ? localStorage.getItem("productQuantityType") : "products"}`;
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +20,7 @@ export class ProductsApisService {
   }
 
   public getProductById(id) {
+    console.log(this.productsApiURL)
     return this.http.get(`${this.productsApiURL}/getById/${id}`);
   }
 

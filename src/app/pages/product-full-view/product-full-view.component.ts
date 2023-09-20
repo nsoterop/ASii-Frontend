@@ -18,7 +18,7 @@ export class ProductFullViewComponent implements OnInit {
 
   constructor(private productsApi: ProductsApisService, private route: ActivatedRoute, private cartService: CartService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.productId = params['productId'];
     });
@@ -26,12 +26,11 @@ export class ProductFullViewComponent implements OnInit {
     this.getProduct();
   }
 
-  public getProduct() {
-    this.productsApi.getProductById(this.productId).subscribe(res => {
+  public async getProduct() {
+    await this.productsApi.getProductById(this.productId).subscribe(res => {
       this.product = res;
+      this.loaded = true;
     })
-
-    this.loaded = true;
   }
 
   public addToCart(product, quantity) {

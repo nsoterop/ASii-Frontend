@@ -18,7 +18,7 @@ export class ProductsService {
   public itemsPerPage = 20
   public category = ''
   public query = ''
-  public productQuantityType = 'Large';
+  public productQuantityType = localStorage.getItem("productQuantityLabel") ? localStorage.getItem("productQuantityLabel") : 'Large';
 
   constructor(private productsApis: ProductsApisService, private router: Router) {
     this.productsSubject = new Subject();
@@ -29,15 +29,20 @@ export class ProductsService {
 
   public setProductApiURL(quantityType) {
     this.productQuantityType = quantityType;
+    localStorage.setItem("productQuantityLabel", quantityType)
     if (quantityType === 'Large') {
       this.productsApis.setProductApiURL('products');
+      localStorage.setItem("productQuantityType", 'products')
     } else if (quantityType === 'Small') {
       this.productsApis.setProductApiURL('smallQuantityProducts');
+      localStorage.setItem("productQuantityType", 'smallQuantityProducts')
     }
     this.page = 1;
     this.itemsPerPage = 20;
     this.getProducts();
     this.categoryRefreshSubject.next(true);
+    console.log("HERE")
+    this.router.navigate(['/'])
   }
   public getProductQuantityType() {
     return this.productQuantityType;
