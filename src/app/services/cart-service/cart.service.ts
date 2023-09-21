@@ -91,13 +91,13 @@ export class CartService {
     this.setLocalStorageCart()
   }
 
-  public clearCart() {
-    this.cartItems = {items: [], total: 0};
-    this.cartTotal = 0;
-    localStorage.removeItem("ASii_Medical_Cart");
-    this.cartChangeEffects();
-    this.cartSubject.next(this.cartItems)
-  }
+  // public clearCart() {
+  //   this.cartItems = {items: [], total: 0};
+  //   this.cartTotal = 0;
+  //   localStorage.removeItem("ASii_Medical_Cart");
+  //   this.cartChangeEffects();
+  //   this.cartSubject.next(this.cartItems)
+  // }
 
   public setLocalStorageCart() {
     let cart = []

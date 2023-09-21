@@ -2733,13 +2733,13 @@ class CartService {
     cartChangeEffects() {
         this.setLocalStorageCart();
     }
-    clearCart() {
-        this.cartItems = { items: [], total: 0 };
-        this.cartTotal = 0;
-        localStorage.removeItem("ASii_Medical_Cart");
-        this.cartChangeEffects();
-        this.cartSubject.next(this.cartItems);
-    }
+    // public clearCart() {
+    //   this.cartItems = {items: [], total: 0};
+    //   this.cartTotal = 0;
+    //   localStorage.removeItem("ASii_Medical_Cart");
+    //   this.cartChangeEffects();
+    //   this.cartSubject.next(this.cartItems)
+    // }
     setLocalStorageCart() {
         let cart = [];
         this.cartItems.items.forEach(item => {
@@ -2807,7 +2807,7 @@ class ProductsService {
         this.categoryRefresh = this.categoryRefreshSubject.asObservable();
     }
     setProductApiURL(quantityType) {
-        this.cartService.clearCart();
+        //this.cartService.clearCart();
         this.productQuantityType = quantityType;
         localStorage.setItem("productQuantityLabel", quantityType);
         if (quantityType === 'Large') {

@@ -5811,19 +5811,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "cartChangeEffects",
         value: function cartChangeEffects() {
           this.setLocalStorageCart();
-        }
-      }, {
-        key: "clearCart",
-        value: function clearCart() {
-          this.cartItems = {
-            items: [],
-            total: 0
-          };
-          this.cartTotal = 0;
-          localStorage.removeItem("ASii_Medical_Cart");
-          this.cartChangeEffects();
-          this.cartSubject.next(this.cartItems);
-        }
+        } // public clearCart() {
+        //   this.cartItems = {items: [], total: 0};
+        //   this.cartTotal = 0;
+        //   localStorage.removeItem("ASii_Medical_Cart");
+        //   this.cartChangeEffects();
+        //   this.cartSubject.next(this.cartItems)
+        // }
+
       }, {
         key: "setLocalStorageCart",
         value: function setLocalStorageCart() {
@@ -5957,7 +5952,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProductsService, [{
         key: "setProductApiURL",
         value: function setProductApiURL(quantityType) {
-          this.cartService.clearCart();
+          //this.cartService.clearCart();
           this.productQuantityType = quantityType;
           localStorage.setItem("productQuantityLabel", quantityType);
 

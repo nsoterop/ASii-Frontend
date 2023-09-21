@@ -29,7 +29,7 @@ export class ProductsService {
   }
 
   public setProductApiURL(quantityType) {
-    this.cartService.clearCart();
+    //this.cartService.clearCart();
     this.productQuantityType = quantityType;
     localStorage.setItem("productQuantityLabel", quantityType)
     if (quantityType === 'Large') {
